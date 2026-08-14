@@ -1,17 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateEquipoDto } from './dto/create-equipo.dto/create-equipo.dto';
+import { UpdateEquipoDto } from './dto/update-equipo.dto/update-equipo.dto';
 
 @Injectable()
 export class EquiposService {
   constructor(private prisma: PrismaService) {}
 
-  async crear(data: {
-    nombre: string;
-    marca: string;
-    modelo: string;
-    numeroSerie: string;
-    estado: string;
-  }) {
+  async crear(data: CreateEquipoDto) {
     return this.prisma.equipo.create({
       data,
     });
@@ -27,16 +23,7 @@ export class EquiposService {
     });
   }
 
-  async actualizar(
-    id: number,
-    data: {
-      nombre: string;
-      marca: string;
-      modelo: string;
-      numeroSerie: string;
-      estado: string;
-    },
-  ) {
+  async actualizar(id: number, data: UpdateEquipoDto) {
     return this.prisma.equipo.update({
       where: { id },
       data,

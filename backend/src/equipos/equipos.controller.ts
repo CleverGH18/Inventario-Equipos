@@ -8,19 +8,15 @@ import {
   Post,
 } from '@nestjs/common';
 import { EquiposService } from './equipos.service';
+import { CreateEquipoDto } from './dto/create-equipo.dto/create-equipo.dto';
+import { UpdateEquipoDto } from './dto/update-equipo.dto/update-equipo.dto';
 
 @Controller('equipos')
 export class EquiposController {
   constructor(private readonly equiposService: EquiposService) {}
 
   @Post()
-  crear(@Body() data: {
-    nombre: string;
-    marca: string;
-    modelo: string;
-    numeroSerie: string;
-    estado: string;
-  }) {
+  crear(@Body() data: CreateEquipoDto) {
     return this.equiposService.crear(data);
   }
 
@@ -37,13 +33,7 @@ export class EquiposController {
   @Patch(':id')
   actualizar(
     @Param('id') id: string,
-    @Body() data: {
-      nombre: string;
-      marca: string;
-      modelo: string;
-      numeroSerie: string;
-      estado: string;
-    },
+    @Body() data: UpdateEquipoDto,
   ) {
     return this.equiposService.actualizar(Number(id), data);
   }
