@@ -17,7 +17,6 @@ function App() {
 
   const [editandoId, setEditandoId] = useState<number | null>(null)
   const [equipoAEliminar, setEquipoAEliminar] = useState<number | null>(null)
-  // GET - Obtener equipos
   useEffect(() => {
     fetch('http://localhost:3000/equipos')
       .then((response) => {
@@ -38,13 +37,12 @@ function App() {
       })
   }, [])
 
-  // POST / PATCH
   const guardarEquipo = (e: FormEvent) => {
     e.preventDefault()
     setError('')
 
     if (editandoId === null) {
-      // POST
+
       fetch('http://localhost:3000/equipos', {
         method: 'POST',
         headers: {
@@ -75,7 +73,7 @@ function App() {
           setError('No se pudo registrar el equipo')
         })
     } else {
-      // PATCH
+
       fetch(`http://localhost:3000/equipos/${editandoId}`, {
         method: 'PATCH',
         headers: {
@@ -106,7 +104,6 @@ function App() {
     }
   }
 
-  // EDITAR
   const editarEquipo = (equipo: Equipo) => {
     setEditandoId(equipo.id)
 
@@ -119,7 +116,6 @@ function App() {
     })
   }
 
-  // DELETE
   const eliminarEquipo = (id: number) => {
     setError('')
 
@@ -139,7 +135,6 @@ function App() {
       })
   }
 
-  // CANCELAR
   const cancelarEdicion = () => {
     setEditandoId(null)
 
