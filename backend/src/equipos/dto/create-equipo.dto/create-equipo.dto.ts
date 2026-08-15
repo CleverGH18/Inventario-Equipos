@@ -1,18 +1,29 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateEquipoDto {
   @ApiProperty({ example: 'Laptop' })
-  nombre: string;
+  @IsString()
+  @IsNotEmpty()
+  nombre!: string;
 
   @ApiProperty({ example: 'Lenovo' })
-  marca: string;
+  @IsString()
+  @IsNotEmpty()
+  marca!: string;
 
   @ApiProperty({ example: 'ThinkPad E14' })
-  modelo: string;
+  @IsString()
+  @IsNotEmpty()
+  modelo!: string;
 
   @ApiProperty({ example: 'SN001' })
-  numeroSerie: string;
+  @IsString()
+  @IsNotEmpty()
+  numeroSerie!: string;
 
   @ApiProperty({ example: 'Operativo' })
-  estado: string;
+  @IsString()
+  @IsNotEmpty()
+  estado!: string;
 }
